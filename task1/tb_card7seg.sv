@@ -81,12 +81,12 @@ module tb_card7seg();
      
      SW <= 4'd14; //14
      #10;
-     assert(HEX0 === 7'b1); //no such card, output should be blank
+     assert(HEX0 === 7'bx); //no such card, output should be blank
      #10;
 
      SW <= 4'd15; //15
      #10;
-     assert(HEX0 === 7'b1); //no such card, output should be blank
+     assert(HEX0 === 7'bx); //no such card, output should be blank
      #10;
 
      $stop;

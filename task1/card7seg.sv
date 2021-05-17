@@ -30,6 +30,7 @@ module card7seg(input logic [3:0] SW, output logic [6:0] HEX0);
       HEX0 = 7'b0011000; //display q
    if(SW == 4'b1101)//king
       HEX0 = 7'b0001001;  //display k
+   
   end
 	
 endmodule
