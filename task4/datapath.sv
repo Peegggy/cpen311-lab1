@@ -73,8 +73,10 @@ endmodule
 
 module loadReg(input logic clk, input logic load, input logic reset, input logic [3:0] in, output logic [3:0]out);
     logic [3:0] next_out;
+    //assign next_out is in if the load is high, otherwise next_out = out
     assign next_out = reset ? (load ? in : out) : 4'b0000;
     always_ff @(negedge clk)begin
+        //value of out changed to next_out at the neg edge of clock becuase KEY is reverse logic
         out = next_out;
     end
 endmodule
