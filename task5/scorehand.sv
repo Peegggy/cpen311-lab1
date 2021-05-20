@@ -19,7 +19,7 @@ if(card3 < 4'd10)
 else
     card_val3 = 4'd0;
 //the total score is the right most digit of all the score values summed
-total = (card_val1+card_val2+card_val3)%10;
+total = (card_val1+card_val2+card_val3)%4'd10;
 end
 // The code describing scorehand will go here.  Remember this is a combinational
 // block. The function is described in the handout. Be sure to review Verilog

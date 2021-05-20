@@ -27,7 +27,7 @@ logic [7:0] output_assign;
 logic [3:0] currentstate, nextstate;
 
 always_comb begin
-   case(currentstate)
+   case(currentstate) 
   `RESET: nextstate = `LPCARD1;
    `LPCARD1: nextstate = `LDCARD1;
    `LDCARD1: nextstate = `LPCARD2;
@@ -40,6 +40,7 @@ always_comb begin
    end
    `LPCARD3: nextstate = d_gets_card ? `LDCARD3 : `WINNER;
    `LDCARD3: nextstate = `WINNER;
+   `WINNER: nextstate = `RESET;
    default: nextstate = `RESET;
    endcase 
 end
@@ -53,7 +54,7 @@ end
 
 //output_assign=
 //{load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light};
-always_ff @(negedge slow_clock) begin
+always_ff @(negedge slow_clock) begin //turns on different load signals depending one whose turn it is to get the card
     case(currentstate)
     `RESET: output_assign = 8'b0_0_0_0_0_0_0_0;
     `LPCARD1: output_assign = 8'b1_0_0_0_0_0_0_0;
