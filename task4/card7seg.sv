@@ -1,7 +1,7 @@
 module card7seg(input logic [3:0] value, output logic [6:0] HEX);
 		
   always_comb begin
-   HEX = 7'bx;
+   HEX = 7'b1;
    if (value == 4'b0000)//blank
       HEX = 7'b1111111;
    if (value == 4'b0001)//ace

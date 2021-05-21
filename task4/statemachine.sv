@@ -48,6 +48,7 @@ always_comb begin
     `LDCARD2: output_assign = 8'b0_0_0_0_1_0_0_0;
     default: output_assign = 8'b0_0_0_0_0_0_0_0;
     endcase
+    //assign the load signals
     {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = output_assign;
 end
  
