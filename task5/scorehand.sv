@@ -1,4 +1,5 @@
 module scorehand(input logic [3:0] card1, input logic [3:0] card2, input logic [3:0] card3, output logic [3:0] total);
+//this module computes the total score of the cards on the dealer's and player's hand
 
 //5 bits to consider when the total of the cards could be out of bound (eg. 8+8 = 16 which is 5'b10000)
 logic [4:0] card_val1, card_val2, card_val3; //the actual score values will be stored in here

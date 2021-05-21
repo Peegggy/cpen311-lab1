@@ -7,6 +7,8 @@
 `define LDCARD3 4'b0111 //load dealer card 3 state
 `define WINNER 4'b1000 //determines the winner
 
+//the statemachine module indicates whether the player or the dealer gets a card.
+//the states of the statemachine will indicate with load signals to turn on.
 module statemachine(input logic slow_clock, input logic resetb,
                     input logic [3:0] dscore, input logic [3:0] pscore, input logic [3:0] pcard3,
                     output logic load_pcard1, output logic load_pcard2, output logic load_pcard3,
@@ -24,6 +26,7 @@ logic [7:0] output_assign;
 
 logic [3:0] currentstate, nextstate;
 
+//assigning the next state depending on the current state and condtions
 always_comb begin
    case(currentstate) 
   `RESET: nextstate <= `LPCARD1;
@@ -58,11 +61,12 @@ always_comb begin
    endcase 
 end
 
+//indicates when the next state becomes the current state
 always_ff @(negedge slow_clock) begin
-    if(resetb)
-    currentstate <= nextstate;
+    if(resetb) //if resetb is 1 meaning its off
+    currentstate <= nextstate; //next state becomes the current state
     else 
-    currentstate <= `RESET;
+    currentstate <= `RESET; //reset is on so current state goes back to the reset state
 end
 
 //output_assign=
@@ -87,4 +91,3 @@ always_ff @(negedge slow_clock) begin //turns on different load signals dependin
     {load_pcard1,load_pcard2,load_pcard3,load_dcard1,load_dcard2,load_dcard3,player_win_light,dealer_win_light} = output_assign;
 end
 endmodule
-
