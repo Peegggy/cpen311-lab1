@@ -5,6 +5,8 @@ module datapath(input logic slow_clock, input logic fast_clock, input logic rese
                 output logic [3:0] pscore_out, output logic [3:0] dscore_out,
                 output logic [6:0] HEX5, output logic [6:0] HEX4, output logic [6:0] HEX3,
                 output logic [6:0] HEX2, output logic [6:0] HEX1, output logic [6:0] HEX0);
+// this module describes how data will be stored and printed on the board
+//it includes the dealcard module for shuffling the cards
 
 // The code describing your datapath will go here.  Your datapath 
 // will hierarchically instantiate six card7seg blocks, two scorehand
