@@ -1,5 +1,5 @@
 module card7seg(input logic [3:0] value, output logic [6:0] HEX);
-		
+		//this module displays the dealt card on the board
   always_comb begin
    HEX = 7'b1;
    if (value == 4'b0000)//blank

@@ -4,6 +4,8 @@
 `define LDCARD2 4'b0010 //load dealer card 2 state
 `define LPCARD2 4'b0100 //load player card 2 state
 
+//the statemachine module indicates whether the player or the dealer gets a card.
+//the states of the statemachine will indicate with load signals to turn on.
 module statemachine(input logic slow_clock, input logic resetb,
                     input logic [3:0] dscore, input logic [3:0] pscore, input logic [3:0] pcard3,
                     output logic load_pcard1, output logic load_pcard2, output logic load_pcard3,
@@ -21,6 +23,7 @@ logic [7:0] output_assign;
 
 logic [3:0] currentstate, nextstate;
 
+//assigning the next state depending on the current state and condtions
 always_comb begin
    case(currentstate) //assigning the next state depending on the current state
    `RESET: nextstate = `LPCARD1;
@@ -31,6 +34,7 @@ always_comb begin
    endcase 
 end
 
+//indicates when the next state becomes the current state
 always_ff @(negedge slow_clock) begin //negedge because KEY has reverse logic
     if(resetb) //meaning reset is actually off
     currentstate <= nextstate; //the next state becomes the current state
